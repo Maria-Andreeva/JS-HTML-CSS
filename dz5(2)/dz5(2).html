@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 5. Teil 2.</title>
+    <link rel="stylesheet" href="dz5(2).css">
+</head>
+<body>
+    <section class="cards-section">
+    
+    </section>
+    
+
+    <script src="dz5(2).js"></script>
+
+    <script>
+        // Шаблонизация
+        const data = JSON.parse(dataProducts);
+
+        const cardsSection = document.querySelector('.cards-section');
+
+        const containerEl = document.createElement("div");
+        containerEl.classList.add("container");
+
+        const cardsSectionTitle = document.createElement('h1');
+        cardsSectionTitle.classList.add('cards-section__title');
+        cardsSectionTitle.textContent = "Fetured Items";
+
+        const cardsSectionDescription = document.createElement('p');
+        cardsSectionDescription.classList.add('cards-section__description');
+        cardsSectionDescription.textContent = "Shop for items based on what we featured in this week";
+
+        const cardsWrapper = document.createElement("div");
+        cardsWrapper.classList.add('cards__wrapper');
+
+        data.forEach(element => {
+            const itemEl = document.createElement('div');
+            itemEl.classList.add('cards__item');
+        
+            const itemImg = document.createElement('div');
+            itemImg.classList.add('item-img');
+            itemImg.style.backgroundImage = `url("${element.url}")`;
+        
+            const itemImgHover = document.createElement('div');
+            itemImgHover.classList.add('item-img__hover');
+        
+            const buttonEl = document.createElement('button');
+            buttonEl.classList.add('item-img__hover-btn');
+            buttonEl.textContent = "Add to Cart";
+        
+            const itemContent = document.createElement('div');
+            itemContent.classList.add('item-description');
+        
+            const itemTitle = document.createElement("h4");
+            itemTitle.classList.add('item-title');
+            itemTitle.textContent = element.name;
+        
+            const itemText = document.createElement("p");
+            itemText.classList.add('item-txt');
+            itemText.textContent = element.description;
+        
+            const itemPrice = document.createElement('p');
+            itemPrice.classList.add('item-price');
+        
+            const itemColorPrice = document.createElement('span');
+            itemColorPrice.classList.add("item_color");
+            itemColorPrice.textContent = ` $${element.price}`;
+        
+            // Собираем структуру
+            cardsWrapper.appendChild(itemEl);
+            itemEl.appendChild(itemImg);
+            itemImg.appendChild(itemImgHover);
+            itemImgHover.appendChild(buttonEl);
+            itemEl.appendChild(itemContent); // Исправлено
+            itemContent.appendChild(itemTitle);
+            itemContent.appendChild(itemText);
+            itemContent.appendChild(itemPrice);
+            itemPrice.appendChild(itemColorPrice);
+        });
+
+        cardsSection.appendChild(containerEl);
+        containerEl.appendChild(cardsSectionTitle);
+        cardsSectionTitle.appendChild(cardsSectionDescription);
+        cardsSectionDescription.appendChild(cardsWrapper);
+        
+
+        const cardsSectionBtn = document.createElement("div");
+        cardsSectionBtn.classList.add("cards-section__btn");
+
+        const btnBrowse = document.createElement("button");
+        btnBrowse.classList.add("btn-browse");
+        btnBrowse.textContent = "Browse All Product";
+
+        containerEl.appendChild(cardsSectionBtn);
+        cardsSectionBtn.appendChild(btnBrowse);
+        
+
+    </script>
+</body>
+</html>
